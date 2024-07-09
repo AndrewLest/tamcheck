@@ -50,7 +50,8 @@ fi
 # File variable to use in redirections of command outputs to files
 output_file_pe_node_count="${output_dir}/pe_node_count.json"
 
-echo -n "PE Server Total Node Count: " > $output_file_pe_node_count
+echo "" > $output_file_pe_node_count
+echo -n "PE Server Total Node Count: " >> $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
 echo "" >> $output_file_pe_node_count
 
@@ -68,3 +69,4 @@ echo "" >> $output_file_pe_node_count
 
 echo -n "PE Server Node Count (Nodes using a cached catalog): " >> $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{cached_catalog_status = "used"}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
+echo "" >> $output_file_pe_node_count
