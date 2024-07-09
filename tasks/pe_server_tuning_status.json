@@ -1,7 +1,15 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "A short description of this task",
+  "description": "This task collects out from 'puppet infrastructure tune' to compare current settings with recommended settings",
   "parameters": {
-  }
+    "output_dir":{
+       "description": "Directory to place data collection",
+       "type": "String",
+       "default": "/var/tmp"
+    }
+  },
+  "implementations": [
+    {"name": "pe_server_tuning_status.sh"}
+  ]
 }
