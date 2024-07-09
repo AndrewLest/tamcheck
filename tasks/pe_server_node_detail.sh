@@ -26,7 +26,7 @@
 #   }
 # Learn more at: https://puppet.com/docs/bolt/0.x/writing_tasks.html#ariaid-title11
 #
-if [ -d ${PT_output_dir} ]
+if [ -d ${T_output_dir} ]
 then
     if [ ! -d "${PT_output_dir}/tamcheck_data" ]
     then
@@ -52,3 +52,10 @@ output_file_pe_node_count="${output_dir}/pe_node_count.json"
 
 echo "PE Server Node Count" > $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
+
+echo -n "PE Server Node Count" >> $output_file_pe_node_count
+puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
+
+echo -n "PE Server Node Count" >> $output_file_pe_node_count
+nc = puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' | awk '/"count":/ {print $2}' 
+echo $nc >> $output_file_pe_node_count
