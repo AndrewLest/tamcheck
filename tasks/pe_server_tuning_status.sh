@@ -26,29 +26,21 @@
 #   }
 # Learn more at: https://puppet.com/docs/bolt/0.x/writing_tasks.html#ariaid-title11
 #
-if [ -d $PT_output_dir ]
+if [ -d ${PT_output_dir} ]
 then
-    if [ ! -d "$PT_output_dir/pe_quick_data" ]
+    if [ ! -d "${PT_output_dir}/tamcheck_data" ]
     then
-        mkdir -p "$PT_output_dir/pe_quick_data"
-        output_dir="$PT_output_dir"
+        mkdir -p "${PT_output_dir}/tamcheck_data"
+        output_dir="${PT_output_dir}"
         output_dir+="/"
-        output_dir+="pe_quick_data"
+        output_dir+="tamcheck_data"
     else
-        output_dir="$PT_output_dir"
+        output_dir="${PT_output_dir}"
         output_dir+="/"
-        output_dir+="pe_quick_data"
-    fi
-
-    count=$(ls -1 "$output_dir"/*.gz 2>/dev/null | wc -l)
-    if [ $count != 0 ]
-    then
-        echo "gz file found for adding node data to"
-    else
-        echo "No gzip files available to use for adding node data"
+        output_dir+="tamcheck_data"
     fi
 else
-    echo "No $PT_output_dir directory exists to dump files"
+    echo "No ${PT_output_dir} directory exists to dump files"
     exit
 fi
 
