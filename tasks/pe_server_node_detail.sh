@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Puppet Task Name: pe_server_tuning_status
+# Puppet Task Name: pe_server_node_detail
 #
 # This is where you put the shell code for your task.
 #
@@ -26,7 +26,6 @@
 #   }
 # Learn more at: https://puppet.com/docs/bolt/0.x/writing_tasks.html#ariaid-title11
 #
-
 if [ -d ${PT_output_dir} ]
 then
     if [ ! -d "${PT_output_dir}/tamcheck_data" ]
@@ -49,6 +48,6 @@ fi
 [[ $PATH =~ "/opt/puppetlabs/bin" ]] || export PATH="/opt/puppetlabs/bin:${PATH}"
 
 # File variable to use in redirections of command outputs to files
-output_file="${output_dir}/pe_server_tuning_status.json"
+output_file_pe_node_count="${output_dir}/pe_node_count.json"
 
-puppet infrastructure tune --compare --render-as json > $output_file
+puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' | awk '/"count":/ {print $2}' > $output_file_pe_node_count
