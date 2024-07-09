@@ -52,20 +52,19 @@ output_file_pe_node_count="${output_dir}/pe_node_count.json"
 
 echo -n "PE Server Total Node Count: " > $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
-echo "" > $output_file_pe_node_count
+echo "" >> $output_file_pe_node_count
 
 echo -n "PE Server Node Count (minus de-actived & expired nodes): " >> $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
-echo "" > $output_file_pe_node_count
+echo "" >> $output_file_pe_node_count
 
 echo -n "PE Server Node Count (Number of Nodes not expired): " >> $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{expired is null}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count 
-echo "" > $output_file_pe_node_count
+echo "" >> $output_file_pe_node_count
 
 echo -n "PE Server Node Count (Inactive nodes): " >> $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{node_state = "inactive"}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
-echo "" > $output_file_pe_node_count
+echo "" >> $output_file_pe_node_count
 
 echo -n "PE Server Node Count (Nodes using a cached catalog): " >> $output_file_pe_node_count
 puppet query 'nodes[count(certname)]{cached_catalog_status = "used"}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
-echo "" > $output_file_pe_node_count
