@@ -2,7 +2,7 @@
   "puppet_task_version": 1,
   "supports_noop": false,
   "description": "This task collects out from 'puppet infrastructure tune' to compare current settings with recommended settings",
-  "input_method": "stdin",
+  "input_method": "environment",
   "parameters": {
     "output_dir": {
        "description": "Directory to place collected data",

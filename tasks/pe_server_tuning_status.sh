@@ -26,6 +26,8 @@
 #   }
 # Learn more at: https://puppet.com/docs/bolt/0.x/writing_tasks.html#ariaid-title11
 #
+echo "The variable is ${PT_output_dir}"
+
 if [ -d ${PT_output_dir} ]
 then
     if [ ! -d "${PT_output_dir}/tamcheck_data" ]
@@ -48,6 +50,6 @@ fi
 [[ $PATH =~ "/opt/puppetlabs/bin" ]] || export PATH="/opt/puppetlabs/bin:${PATH}"
 
 # File variable to use in redirections of command outputs to files
-output_file="$output_dir/pe_server_tuning_status.json"
+output_file="${output_dir}/pe_server_tuning_status.json"
 
 puppet infrastructure tune --compare --render-as json > $output_file
