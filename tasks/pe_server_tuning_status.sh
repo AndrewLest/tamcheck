@@ -44,6 +44,9 @@ else
     exit
 fi
 
+# Ensure pathing is set to be able to run puppet commands
+[[ $PATH =~ "/opt/puppetlabs/bin" ]] || export PATH="/opt/puppetlabs/bin:${PATH}"
+
 # File variable to use in redirections of command outputs to files
 output_file="$output_dir/pe_server_tuning_status.json"
 
