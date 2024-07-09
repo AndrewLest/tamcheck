@@ -50,4 +50,5 @@ fi
 # File variable to use in redirections of command outputs to files
 output_file_pe_node_count="${output_dir}/pe_node_count.json"
 
-puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' | awk '/"count":/ {print $2}' > $output_file_pe_node_count
+echo "PE Server Node Count" > $output_file_pe_node_count
+puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' | awk '/"count":/ {print $2}' >> $output_file_pe_node_count
