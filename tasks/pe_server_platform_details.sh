@@ -78,7 +78,7 @@ fi
 # File variable to use in redirections of command outputs to files
 output_file_pe_server_platform="${output_dir}/pe_node_server_platform.out"
 
-ip=`puppet facts networking.fqdn --render-as yaml | awk -F: '{print $2}'`
+ip=`puppet facts networking.fqdn --render-as s | awk -F\" {'print $4}'`
 
 echo > $output_file_pe_server_platform
 echo -n "PE Server FQDN: " >> $output_file_pe_server_platform
