@@ -1,14 +1,6 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "A short description of this task",
-  "parameters": {
-  }
-}
-
-{
-  "puppet_task_version": 1,
-  "supports_noop": false,
   "description": "This task collects PE server platform details",
   "input_method": "environment",
   "parameters": {
