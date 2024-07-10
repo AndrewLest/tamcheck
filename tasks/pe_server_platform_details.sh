@@ -78,30 +78,18 @@ fi
 # File variable to use in redirections of command outputs to files
 output_file_pe_server_platform="${output_dir}/pe_node_server_platform.out"
 
-ip=`puppet facts networking.fqdn --render-as s | awk -F\" {'print $4}'`
+fqdn=`puppet facts networking.fqdn --render-as s | awk -F\" {'print $4}'`
+ip=`puppet facts networking.ip --render-as s | awk -F\" '{print $4}'`
+os_name=`puppet facts os.name --render-as s | awk -F\" '{print $4}'`
+os_ver=`puppet facts os.release.full --render-as s | awk -F\" '{print $4}'`
+vcpu=`puppet facts processors.count --render-as s | awk -F\> '{print $2}' | sed 's/\}//g'`
+cpu_model=`puppet facts processors.models --render-as s | awk -F\" '{print $4}'`
+memory=`puppet facts memory.system.total --render-as s | awk -F\" '{print $4}'`
 
-echo > $output_file_pe_server_platform
-echo -n "PE Server FQDN: " >> $output_file_pe_server_platform
-puppet facts networking.fqdn --render-as yaml | awk -F: '{print $2}' >> $output_file_pe_server_platform
-
-echo "PE Server FQDN: ${ip}" >> $output_file_pe_server_platform
-
-echo -n "PE Server ip address: " >> $output_file_pe_server_platform
-puppet facts networking.ip --render-as yaml | awk -F: '{print $2}' >> $output_file_pe_server_platform 
-
-echo -n "PE Server operating system: " >> $output_file_pe_server_platform
-puppet facts os.name --render-as yaml | awk -F: '{print $2}' >> $output_file_pe_server_platform 
-
-echo -n "PE Server operating system version: ${os_version}" >> $output_file_pe_server_platform
-puppet facts os.release.full --render-as yaml | sed s/\'//g | awk -F: '{print $2}' >> $output_file_pe_server_platform 
-
-echo -n "PE Server vCPU count: ${vcpu}" >> $output_file_pe_server_platform
-puppet facts processors.count --render-as yaml | awk -F: '{print $2}' >> $output_file_pe_server_platform 
-
-echo -n "PE Server CPU type: ${cpu_model}" >> $output_file_pe_server_platform
-puppet facts processors.models --render-as yaml | uniq | awk -F- '{print $2}' >> $output_file_pe_server_platform 
-
-echo -n "PE Server Memory: ${memory}" >> $output_file_pe_server_platform
-puppet facts memory.system.total --render-as yaml | awk -F: '{print $2}' >> $output_file_pe_server_platform 
-
-echo >> $output_file_pe_server_platform
+echo "PE Server FQDN: ${fqdn}" >> $output_file_pe_server_platform
+echo "PE Server ip address: ${ip}" >> $output_file_pe_server_platform
+echo "PE Server operating system: ${os_name}" >> $output_file_pe_server_platform
+echo "PE Server operating system version: ${os_ver}" >> $output_file_pe_server_platform
+echo "PE Server vCPU count: ${vcpu}" >> $output_file_pe_server_platform
+echo "PE Server CPU type: ${cpu_model}" >> $output_file_pe_server_platform
+echo "PE Server Memory: ${memory}" >> $output_file_pe_server_platform
