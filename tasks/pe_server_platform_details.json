@@ -11,6 +11,6 @@
     }
   },
   "implementations": [
-    { "name": "pe_server_platform_detaiils.sh" }
+    { "name": "pe_server_platform_details.sh" }
   ]
 }
