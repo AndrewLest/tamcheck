@@ -78,24 +78,31 @@ fi
 # File variable to use in redirections of command outputs to files
 output_file_pe_server_platform="${output_dir}/pe_node_server_platform.out"
 
-fqdn = puppet facts networking.fqdn
-ip = puppet facts networking.ip
-os = puppet facts os.name
-os_version = puppet facts os.release.full
-vcpu = puppet facts processors.count
-cpu_model = puppet facts processors.models | uniq 
-memory = puppet facts memory.total
-uptime = puppet facts system_uptime.uptime
 
-echo "" > $output_file_pe_server_platform
+echo > $output_file_pe_server_platform
 echo -n "PE Server FQDN: " >> $output_file_pe_server_platform
-puppet facts networking.fqdn >> $output_file_pe_server_platform
-echo "PE Server ip address: ${ip}" >> $output_file_pe_server_platform
-echo "PE Server operating system: ${os}" >> $output_file_pe_server_platform
-echo "PE Server operating system version: ${os_version}" >> $output_file_pe_server_platform
-echo "PE Server vCPU count: ${vcpu}" >> $output_file_pe_server_platform
-echo "PE Server CPU type: ${cpu_model}" >> $output_file_pe_server_platform
-echo "PE Server Memory: ${memory}" >> $output_file_pe_server_platform
-echo "PE Server Uptime: ${uptime}" >> $output_file_pe_server_platform
+puppet facts networking.fqdn | awk -F\" '{print $4}' >> $output_file_pe_server_platform
 
-echo "" >> $output_file_pe_server_platform
+echo -n "PE Server ip address: " >> $output_file_pe_server_platform
+puppet facts networking.ip | awk -F\" '{print $4}' >> $output_file_pe_server_platform 
+
+echo -n "PE Server operating system: " >> $output_file_pe_server_platform
+puppet facts os.name | awk -F\" '{print $4}' >> $output_file_pe_server_platform 
+
+echo -n "PE Server operating system version: ${os_version}" >> $output_file_pe_server_platform
+puppet facts os.release.full | awk -F\" '{print $4}' >> $output_file_pe_server_platform 
+
+echo -n "PE Server vCPU count: ${vcpu}" >> $output_file_pe_server_platform
+puppet facts processors.count | awk -F\" '{print $4}' >> $output_file_pe_server_platform 
+
+echo -n "PE Server CPU type: ${cpu_model}" >> $output_file_pe_server_platform
+cpu_model = puppet facts processors.models | uniq  >> $output_file_pe_server_platform 
+| awk -F\" '{print $4}' >> $output_file_pe_server_platform 
+
+echo -n "PE Server Memory: ${memory}" >> $output_file_pe_server_platform
+puppet facts memory.total | awk -F\" '{print $4}' >> $output_file_pe_server_platform 
+
+echo -n "PE Server Uptime: ${uptime}" >> $output_file_pe_server_platform
+puppet facts system_uptime.uptime | awk -F\" '{print $4}' >> $output_file_pe_server_platform 
+
+echo >> $output_file_pe_server_platform
