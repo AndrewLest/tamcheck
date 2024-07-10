@@ -88,7 +88,7 @@ memory = puppet facts memory.total
 uptime = puppet facts system_uptime.uptime
 
 echo "" > $output_file_pe_server_platform
-echo "PE Server FQDN: ${fqdn}" >> $output_file_pe_server_platform
+echo "PE Server FQDN: " ${fqdn} >> $output_file_pe_server_platform
 echo "PE Server ip address: ${ip}" >> $output_file_pe_server_platform
 echo "PE Server operating system: ${os}" >> $output_file_pe_server_platform
 echo "PE Server operating system version: ${os_version}" >> $output_file_pe_server_platform
