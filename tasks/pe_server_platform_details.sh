@@ -86,7 +86,7 @@ vcpu=`puppet facts processors.count --render-as s | awk -F\> '{print $2}' | sed 
 cpu_model=`puppet facts processors.models --render-as s | awk -F\" '{print $4}'`
 memory=`puppet facts memory.system.total --render-as s | awk -F\" '{print $4}'`
 
-echo "PE Server FQDN: ${fqdn}" >> $output_file_pe_server_platform
+echo "PE Server FQDN: ${fqdn}" > $output_file_pe_server_platform
 echo "PE Server ip address: ${ip}" >> $output_file_pe_server_platform
 echo "PE Server operating system: ${os_name}" >> $output_file_pe_server_platform
 echo "PE Server operating system version: ${os_ver}" >> $output_file_pe_server_platform
