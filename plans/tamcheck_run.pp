@@ -9,6 +9,5 @@ plan tamcheck::tamcheck_run (
     run_task('tamcheck::pe_server_platform_details', $targets, output_dir => $output_dir)
     run_task('tamcheck::pe_server_node_detail', $targets, output_dir => $output_dir)
     run_task('tamcheck::data_collect', $targets, output_dir => $output_dir)
-
   }
 }
