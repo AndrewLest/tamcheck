@@ -28,30 +28,36 @@
 #
 if [ -d ${PT_output_dir} ]
 then
-    if [ ! -d "${PT_output_dir}/tamcheck_data" ]
-    then
-    	echo "${PT_output_dir}/tamcheck_data has not been created, run the collection task(s) first"
-   	exit
-    else
-        output_dir="${PT_output_dir}"
-        output_dir+="/"
-        output_dir+="tamcheck_data"
-    fi
+	if [ ! -d "${PT_output_dir}/tamcheck_data" ]
+	then
+	    	echo "${PT_output_dir}/tamcheck_data has not been created, run the collection task(s) first"
+   		exit
+    	else
+        	output_dir="${PT_output_dir}"
+        	output_dir+="/"
+        	output_dir+="tamcheck_data"
+    	fi
 else
-    echo "Output directory: ${PT_output_dir} does not exist, terminating task"
-    exit
+	echo "Output directory: ${PT_output_dir} does not exist, terminating task"
+	exit
 fi
 
 # Ensure pathing is set to be able to run puppet commands
 [[ $PATH =~ "/opt/puppetlabs/bin" ]] || export PATH="/opt/puppetlabs/bin:${PATH}"
 
-# Move to the output directory
-cd $output_dir
+# Check output files are present
+if [ `ls -1 ${output_dir}/*.out | grep -c` -gt 0 ]
+then
+	# Move to the output directory
+	cd $output_dir
 
-# Use the date to generate a meaningful, unique string for the filename [Start with dd-mm-yy, can be extended if needed]
-file_date=`date +"%d-%m-%y"`
+	# Use the date to generate a meaningful, unique string for the filename [Start with dd-mm-yy, can be extended if needed]
+	file_date=`date +"%d-%m-%y"`
 
-# Add all files with the .out suffix to a compressed archive
-tar cfz tamcheck_archive_${file_date}.tar.gz *.out
-tar cfz tamcheck_archive.tar.gz *.out
+	# Add all files with the .out suffix to a compressed archive
+	tar cfz tamcheck_archive_${file_date}.tar.gz *.out
+else
+    	echo "${PT_output_dir}/tamcheck_data does not contain any output files, run the collection task(s) first"
+   	exit
+fi
  
