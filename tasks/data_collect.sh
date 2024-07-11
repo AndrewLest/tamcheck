@@ -46,7 +46,7 @@ fi
 [[ $PATH =~ "/opt/puppetlabs/bin" ]] || export PATH="/opt/puppetlabs/bin:${PATH}"
 
 # Check output files are present
-if [ `ls -1 ${output_dir}/*.out | grep -c` -gt 0 ]
+if [ `ls -1 ${output_dir}/*.out | wc -l` -gt 0 ]
 then
 	# Move to the output directory
 	cd $output_dir
