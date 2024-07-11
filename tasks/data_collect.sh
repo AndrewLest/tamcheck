@@ -49,8 +49,8 @@ fi
 cd $output_dir
 
 # Use the date to generate a meaningful, unique string for the filename [Start with dd-mm-yy, can be extended if needed]
-date=`data +"%d-%m-%y`
+file_date=`date +"%d-%m-%y`
 
 # Add all files with the .out suffix to a compressed archive
-tar cfz tamcheck_archive_${date}.tar.gz *.out
+tar cfz tamcheck_archive_${file_date}.tar.gz *.out
  
