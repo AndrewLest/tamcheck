@@ -57,5 +57,5 @@ puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' |
 # puppet query 'nodes[count(certname)]{deactivated is null and expired is null}' >> "$output_file"
 
 # Add a separator for now - need to revisit this when we properly format the output 
-append_separator "$output_file"
+#append_separator "$output_file"
 
