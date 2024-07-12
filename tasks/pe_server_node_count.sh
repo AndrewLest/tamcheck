@@ -49,7 +49,8 @@ fi
 [[ $PATH =~ "/opt/puppetlabs/bin" ]] || export PATH="/opt/puppetlabs/bin:${PATH}"
 
 # File variable to use in redirections of command outputs to files
-output_file_pe_server_platform="${output_dir}/pe_server_node_count.out"
+#output_file_pe_server_platform="${output_dir}/pe_server_node_count.out"
+output_file="${output_dir}/pe_server_node_count.out"
 # Get PE Server node count
 printf "Collecting PE Server Node Count \n"
 printf "Number of Nodes = " >> "$output_file"
