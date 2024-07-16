@@ -1,7 +1,7 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "This task collects Puppet node name",
+  "description": "This task collects Puppet node count not expired",
   "input_method": "environment",
   "parameters": {
     "output_dir": {
@@ -11,6 +11,6 @@
     }
   },
   "implementations": [
-    { "name": "pe_server_name.sh" }
+    { "name": "pe_server_node_count_not_expired.sh" }
   ]
 }

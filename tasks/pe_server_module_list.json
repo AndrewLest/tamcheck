@@ -1,7 +1,7 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "This task collects Puppet node name",
+  "description": "This task collects out from 'puppet module list' ",
   "input_method": "environment",
   "parameters": {
     "output_dir": {
@@ -11,6 +11,6 @@
     }
   },
   "implementations": [
-    { "name": "pe_server_name.sh" }
+    { "name": "pe_server_module_list.sh" }
   ]
 }
