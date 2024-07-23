@@ -53,4 +53,6 @@ output_file="${output_dir}/pe_server_infrastructure_status.out"
 
 puppet infrastructure status | tee $output_file
 
-echo " output_file is found here: ${output_file} "
+echo ""
+echo "Output_file is found here: ${output_file} "
+echo ""
