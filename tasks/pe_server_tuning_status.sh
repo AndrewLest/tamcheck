@@ -53,4 +53,4 @@ output_file="${output_dir}/pe_server_tuning_status.out"
 
 puppet infrastructure tune --compare | tee $output_file
 
-echo " output_file is found here: ${output_file} "
+echo "\nOutput_file is found here: ${output_file} "
