@@ -51,5 +51,9 @@ fi
 # File variable to use in redirections of command outputs to files
 output_file="${output_dir}/pe_server_name.out"
 
-printf "" > "$output_file"
-puppet config print | awk '/^server =/ {print $3}' >> "$output_file"
+printf "" | tee "$output_file"
+puppet config print | awk '/^server =/ {print $3}' | tee -a "$output_file"
+
+echo ""
+echo "Output_file is found here: ${output_file} "
+echo ""
