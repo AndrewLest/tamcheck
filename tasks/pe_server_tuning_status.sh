@@ -55,3 +55,4 @@ puppet infrastructure tune --compare | tee $output_file
 
 echo ""
 echo "Output_file is found here: ${output_file} "
+echo ""

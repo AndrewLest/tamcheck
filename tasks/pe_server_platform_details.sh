@@ -96,3 +96,4 @@ echo "PE Server Memory: ${memory}" | tee -a $output_file
 
 echo ""
 echo "Output_file is found here: ${output_file} "
+echo ""
