@@ -94,4 +94,5 @@ echo "PE Server vCPU count: ${vcpu}" | tee -a $output_file
 echo "PE Server CPU type: ${cpu_model}" | tee -a $output_file
 echo "PE Server Memory: ${memory}" | tee -a $output_file
 
-echo "\nOutput_file is found here: ${output_file} "
+echo ""
+echo "Output_file is found here: ${output_file} "
