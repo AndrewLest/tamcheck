@@ -51,4 +51,6 @@ fi
 # File variable to use in redirections of command outputs to files
 output_file="${output_dir}/pe_server_tuning_status.out"
 
-puppet infrastructure tune --compare > $output_file
+puppet infrastructure tune --compare | tee $output_file
+
+echo " output_file is found here: ${output_file} "
