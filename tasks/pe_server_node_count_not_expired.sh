@@ -52,9 +52,9 @@ output_file="${output_dir}/pe_node_server_node_count_not_expired.out"
 
 # Get PE Server node count that are not expired
 printf "Collecting PE Server Node Count not expired \n"
-printf "Number of Nodes not expired = " >> "$output_file"
-puppet query 'nodes[count(certname)]{expired is null}' | awk '/    "count":/ {print $2}' >> "$output_file"
+printf "Number of Nodes not expired = " | tee "$output_file"
+puppet query 'nodes[count(certname)]{expired is null}' | awk '/    "count":/ {print $2}' | tee -a "$output_file"
 
-# Add a separator for now - need to revisit this when we properly format the output 
-#append_separator "$output_file"
-
+echo ""
+echo "Output_file is found here: ${output_file} "
+echo ""
